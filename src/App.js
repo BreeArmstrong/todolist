@@ -36,6 +36,18 @@ function App() {
   }
  };
  
+ // const sortTodos = (type) => {
+ //  if (type === 'active') {
+ //   return renderedTodos.filter(type);
+ //  }
+ //  else if (type === 'complete') {
+ //   return renderedTodos.filter(type);
+ //  } else {
+ //   return renderedTodos;
+ //  }
+ // };
+ 
+ 
  const handleDelete = e => {
   const {id} = e.target.dataset;
   delete state[id];
@@ -54,12 +66,20 @@ function App() {
  
  const handleShowType = e => {
   const {type} = e.target.dataset;
-  switch (type) {
-  case (type === 'active'){
-   return 
-  }
-  }
+  console.log(type);
   setShowType(type);
+  if (type === 'active') {
+   return renderedTodos.filter((type) => {
+    return type === 'active'
+   });
+  }
+  else if (type === 'complete') {
+   return renderedTodos.filter((type) => {
+    return type === 'complete'
+   });
+  } else {
+   return renderedTodos;
+  }
  };
  
  const renderedTodos = Object.values(state)
@@ -67,7 +87,7 @@ function App() {
      <Todo handleDelete={handleDelete}
            handleComplete={handleComplete}
            key={t.id}
-           todo={t} />
+           todo={t}/>
    );
    
  return(
